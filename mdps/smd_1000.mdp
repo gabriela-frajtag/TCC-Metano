@@ -1,0 +1,111 @@
+integrator			= md
+
+constraints			= all-bonds
+nsteps				= 2500000	; 10 ns
+dt				= 0.004
+
+nstxout				= 0		; xyz	
+nstvout				= 0		; v		
+nstfout				= 0		; F		
+nstenergy			= 25000	; E		100ps
+nstxout-compressed		= 25000	; xtc	100ps
+compressed-x-grps		= System
+
+nstlist				= 10
+rlist				= 1.0
+
+coulombtype			= pme
+rcoulomb			= 1.0
+cutoff-scheme			= Verlet
+
+vdw-type			= cut-off
+rvdw				= 1.0
+DispCorr			= EnerPres
+
+Tcoupl				= v-rescale
+tc-grps				= system
+tau-t				= 1.0
+ref-t				= 309
+
+energygrps			= System
+
+Pcoupl				= parrinello-rahman
+pcoupltype			= isotropic
+tau_p				= 2.0
+compressibility			= 4.5e-5
+ref_p				= 1.0
+
+gen_vel				= no 
+gen_temp			= 309
+gen_seed			= -1
+
+pull         = yes
+pull-ngroups = 10
+pull-ncoords = 8
+
+pull-group1-name = CU_CU_299349
+pull-group2-name = CU_CU_299350
+pull-group3-name = F43_&_NA_NA_37613
+pull-group4-name = F43_&_NB_NB_37616
+pull-group5-name = F43_&_NC_NC_37667
+pull-group6-name = F43_&_ND_ND_37619
+pull-group7-name = F43_&_NA_NA_37720
+pull-group8-name = F43_&_NB_NB_37723
+pull-group9-name = F43_&_NC_NC_37774
+pull-group10-name = F43_&_ND_ND_37726
+
+pull-coord1-type = umbrella
+pull-coord1-geometry = distance
+pull-coord1-groups = 1 3
+pull-coord1-dim = Y Y Y
+pull-coord1-k = 1000
+pull-coord1-start = yes
+
+pull-coord2-type = umbrella
+pull-coord2-geometry = distance
+pull-coord2-groups = 1 4
+pull-coord2-dim = Y Y Y
+pull-coord2-k = 1000
+pull-coord2-start = yes
+
+pull-coord3-type = umbrella
+pull-coord3-geometry = distance
+pull-coord3-groups = 1 5
+pull-coord3-dim = Y Y Y
+pull-coord3-k = 1000
+pull-coord3-start = yes
+
+pull-coord4-type = umbrella
+pull-coord4-geometry = distance
+pull-coord4-groups = 1 6
+pull-coord4-dim = Y Y Y
+pull-coord4-k = 1000
+pull-coord4-start = yes
+
+pull-coord5-type = umbrella
+pull-coord5-geometry = distance
+pull-coord5-groups = 2 7
+pull-coord5-dim = Y Y Y
+pull-coord5-k = 1000
+pull-coord5-start = yes
+
+pull-coord6-type = umbrella
+pull-coord6-geometry = distance
+pull-coord6-groups = 2 8
+pull-coord6-dim = Y Y Y
+pull-coord6-k = 1000
+pull-coord6-start = yes
+
+pull-coord7-type = umbrella
+pull-coord7-geometry = distance
+pull-coord7-groups = 2 9
+pull-coord7-dim = Y Y Y
+pull-coord7-k = 1000
+pull-coord7-start = yes
+
+pull-coord8-type = umbrella
+pull-coord8-geometry = distance
+pull-coord8-groups = 2 10
+pull-coord8-dim = Y Y Y
+pull-coord8-k = 1000
+pull-coord8-start = yes
