@@ -12,6 +12,8 @@ E que esse metano contribui significativamente para o **aquecimento global**? �
 Este repositório reúne o material que desenvolvemos para o nosso Trabalho de Conclusão de Curso (TCC) na  na Ilum Escola de Ciência, onde exploramos a seguinte ideia:
 **E se a gente reduzisse o metano atuando direto nas enzimas que o produzem?**
 
+Os autores do projeto são **Bruno Brischi** e **Gabriela Frajtag**, com a supervisão do **Dr. Leandro Oliveira Bortot** e da **Juliana Helena Costa Smetana** e colaboração de **Iasodara do Carmo Lima dos Santos** e **Carlos Daniel Marques Santos Simões**
+
 
 **Organização do Repositório**
 
