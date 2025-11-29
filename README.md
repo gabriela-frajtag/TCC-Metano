@@ -40,5 +40,52 @@ TCC-Metano/
 │
 ├── amber03ws/       
 ├── mdps/            
-├── README.md
-└── header tcc.png
+└── README.md
+```
+
+[amber03ws](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/amber03ws/README.md)
+: A pasta `amber03ws` contém o campo de força AMBER03ws utilizado nas simulações. Detalhes específicos encontram-se em  
+
+[Análises](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/Análises/README.md): As análises de dinâmica molecular, pKa e triagem virtual estão organizadas em  
+
+A documentação escrita, incluindo explicações das metodologias, preparação dos sistemas e descrição dos protocolos, está em  
+[docs](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/docs/index.md)
+
+Os arquivos de parâmetros .mdp utilizados na montagem e execução das simulações estão descritos em  
+[mdps](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/mdps/README.md)
+
+As estruturas base de Mer e MCR utilizadas para gerar os sistemas simulados são explicadas em  
+[PDBs](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/PDBs/README.md)
+
+Os scripts de preparação, execução em cluster e pós-processamento das trajetórias podem ser consultados em  
+[Scripts](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/Scripts/README.md)
+
+
+## Dependências
+
+```text
+Simulação:
+  GROMACS com GPU
+  Singularity
+  GPU NVIDIA compatível
+
+Parametrização de ligantes:
+  conda
+  AmberTools (antechamber, parmchk2, tleap)
+  Python 3
+  numpy
+  parmed
+
+Notebooks:
+  Python 3
+  Jupyter
+  numpy
+  pandas
+  matplotlib
+```
+
+## Citação
+
+```
+Brischi, B. F.; Frajtag, G.; Simões, C. D. M. S.; Santos, I. C. L. Inibição de enzimas metanogênicas com produtos naturais como estratégia de mitigação da emissão de metano. Ilum Escola de Ciência – CNPEM, 2025. Disponível em: https://github.com/gabriela-frajtag/TCC-Metano
+```
