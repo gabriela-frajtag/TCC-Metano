@@ -43,22 +43,10 @@ TCC-Metano/
 └── README.md
 ```
 
-[amber03ws](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/amber03ws/README.md)
-: A pasta `amber03ws` contém o campo de força AMBER03ws utilizado nas simulações. Detalhes específicos encontram-se em  
 
-[Análises](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/Análises/README.md): As análises de dinâmica molecular, pKa e triagem virtual estão organizadas em  
+[Análises](Análises/README.md): Arquivo contendo a descrição geral das análises realizadas. Para detalhes de cada análise, basta verificar: [Boltziana](Análises/Boltzina/README.md), [Dinamica Molecular](Análises/Dinâmica%20Molecular/README.md), [PropKa](Análises/PropKa/README.md).
 
-A documentação escrita, incluindo explicações das metodologias, preparação dos sistemas e descrição dos protocolos, está em  
-[docs](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/docs/index.md)
-
-Os arquivos de parâmetros .mdp utilizados na montagem e execução das simulações estão descritos em  
-[mdps](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/mdps/README.md)
-
-As estruturas base de Mer e MCR utilizadas para gerar os sistemas simulados são explicadas em  
-[PDBs](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/PDBs/README.md)
-
-Os scripts de preparação, execução em cluster e pós-processamento das trajetórias podem ser consultados em  
-[Scripts](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/Scripts/README.md)
+[Scripts](Scripts/README.md): Os scripts de preparação, execução em cluster e pós-processamento das trajetórias podem ser consultados em  
 
 
 ## Dependências

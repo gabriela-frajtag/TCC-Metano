@@ -6,7 +6,7 @@ A documentação detalhada de cada conjunto de análises está organizada nos RE
 
 ### Boltzina
 
-[Boltzina](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/Análises/Boltzina/README.md)
+[Boltzina](Boltzina/README.md)
 
 Subpasta com o notebook `analise_boltzina.ipynb` e as planilhas `boltzina_mcr.xlsx` e `boltzina_mer.xlsx`. O notebook lê as saídas do modelo Boltzina e dos dockings para MCR e Mer, monta dataframes consolidados e gera:
 
@@ -19,7 +19,7 @@ Os gráficos são salvos em arquivos `.png` na própria pasta.
 
 ### Dinâmica Molecular
 
-[Dinâmica Molecular](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/Análises/Dinâmica%20Molecular/README.md)
+[Dinâmica Molecular](Dinâmica%20Molecular/README.md)
 
 Subpasta que reúne o notebook `Análise DM.ipynb`, o pacote `Análise DM.zip` e as saídas do GROMACS organizadas nas pastas:
 
@@ -40,7 +40,7 @@ As figuras são salvas em arquivos `.jpg` na própria pasta.
 
 ### PropKa
 
-[PropKa](https://github.com/gabriela-frajtag/TCC-Metano/tree/main/Análises/PropKa/README.md)
+[PropKa](PropKa/README.md)
 
 Subpasta com o notebook `Análise de pKa.ipynb` e arquivos intermediários (`pka_formatado_3colunas.csv`, `pka_mcr6mer_3colunas.csv`, `RESUMO_mcr_6mer_pka.txt`). O notebook:
 
