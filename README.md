@@ -40,5 +40,40 @@ TCC-Metano/
 │
 ├── amber03ws/       
 ├── mdps/            
-├── README.md
-└── header tcc.png
+└── README.md
+```
+
+
+[Análises](Análises/README.md): Arquivo contendo a descrição geral das análises realizadas. Para detalhes de cada análise, basta verificar: [Boltziana](Análises/Boltzina/README.md), [Dinamica Molecular](Análises/Dinâmica%20Molecular/README.md), [PropKa](Análises/PropKa/README.md).
+
+[Scripts](Scripts/README.md): Os scripts de preparação, execução em cluster e pós-processamento das trajetórias podem ser consultados em  
+
+
+## Dependências
+
+```text
+Simulação:
+  GROMACS com GPU
+  Singularity
+  GPU NVIDIA compatível
+
+Parametrização de ligantes:
+  conda
+  AmberTools (antechamber, parmchk2, tleap)
+  Python 3
+  numpy
+  parmed
+
+Notebooks:
+  Python 3
+  Jupyter
+  numpy
+  pandas
+  matplotlib
+```
+
+## Citação
+
+```
+Brischi, B. F.; Frajtag, G.; Simões, C. D. M. S.; Santos, I. C. L. Inibição de enzimas metanogênicas com produtos naturais como estratégia de mitigação da emissão de metano. Ilum Escola de Ciência – CNPEM, 2025. Disponível em: https://github.com/gabriela-frajtag/TCC-Metano
+```
