@@ -9,14 +9,14 @@ theme:
     primary: teal
     accent: amber
 nav:
-  - Visão geral: docs/readme_geral.md
-  - Scripts: docs/scripts.md
+  - Visão geral: index.md
+  - Scripts: scripts.md
   - Análises:
-      - Índice: docs/analises.md
-      - Boltzina: docs/boltzina.md
-      - Dinâmica Molecular: docs/dinamica_md.md
-      - PropKa: docs/propka.md
-      - Triagem virtual: docs/triagem.md
+      - Índice: analises.md
+      - Boltzina: boltzina.md
+      - Dinâmica Molecular: dinamica_md.md
+      - PropKa: propka.md
+      - Triagem virtual: triagem.md
 extra:
   social:
     - icon: fontawesome/brands/github
