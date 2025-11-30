@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://gabriela-frajtag.github.io/TCC-Metano/scripts/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Scripts - TCC-Metano – Documentação</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Scripts";
+        var mkdocs_page_input_path = "scripts.md";
+        var mkdocs_page_url = "/TCC-Metano/scripts/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TCC-Metano – Documentação
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../docs/readme_geral.md">Visão geral</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../docs/scripts.md">Scripts</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Análises</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../docs/analises.md">Índice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docs/boltzina.md">Boltzina</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docs/dinamica_md.md">Dinâmica Molecular</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docs/propka.md">PropKa</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docs/triagem.md">Triagem virtual</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TCC-Metano – Documentação</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Scripts</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/gabriela-frajtag/TCC-Metano/edit/master/docs/scripts.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h1>
+<p>Esta pasta reúne os scripts usados para preparar sistemas, corrigir trajetórias, rodar simulações em lote no cluster e parametrizar ligantes. Eles foram escritos para um ambiente com GROMACS, Slurm e Singularity, e assumem uma certa organização de arquivos descrita no README principal do repositório.</p>
+<h2 id="run-gmx_bigsh">run-gmx_big.sh<a class="headerlink" href="#run-gmx_bigsh" title="Permanent link">&para;</a></h2>
+<p>Script de submissão para rodar várias simulações de produção em GPU usando Slurm e um container Singularity com GROMACS.</p>
+<p>O script espera dois argumentos. O primeiro é uma lista de caminhos com prefixos no formato <code>caminho/prefixo</code>, separados por espaço. Cada prefixo identifica um par de arquivos <code>.tpr</code> e <code>.cpt</code> ou <code>.xtc</code> dentro de um diretório. O segundo argumento é opcional e ativa o modo de teste, que reduz o número de passos.</p>
+<p>Exemplo de uso em um nó de cluster:</p>
+<pre><code class="language-bash">sbatch run-gmx_big.sh &quot;mcr/apo/md mcr/holo/md mer/apo/md&quot; teste
+</code></pre>
+<p>Para cada entrada da lista, o script entra no diretório correspondente, monta a linha de comando do <code>mdrun</code> com aceleração em GPU e chama:</p>
+<pre><code class="language-bash">singularity run --nv ~/gromacs_2024.5_gpu.sif mdrun -s PREFIX.tpr -v -deffnm PREFIX -pin off -nstlist 150 -nb gpu -bonded gpu -pme gpu -ntomp $SLURM_CPUS_PER_TASK
+</code></pre>
+<p>Se existir <code>PREFIX.xtc</code>, o script retoma a simulação com <code>-cpi PREFIX.cpt -append</code>. Quando o segundo argumento não está vazio, ele adiciona <code>-nsteps 50000 -resetstep 40000 -noconfout</code>, útil para testar se o ambiente está configurado corretamente antes de rodar simulações longas.</p>
+<h2 id="gmx_analyzesh">gmx_analyze.sh<a class="headerlink" href="#gmx_analyzesh" title="Permanent link">&para;</a></h2>
+<p>Script de pós-processamento das trajetórias de dinâmica molecular. Ele cria um diretório <code>analises</code> e, para cada réplica, gera arquivos de RMSD, RMSF, SASA, raio de giração, pontes de hidrogênio e trajetórias em PDB para visualização.</p>
+<p>Os parâmetros principais são definidos no início do arquivo: número total de réplicas (<code>total</code>), intervalo de amostragem em ps (<code>dt</code>), tempo total da simulação (<code>e</code>) e flags que ativam ou desativam cada tipo de análise. O script assume arquivos <code>md_fit.N.xtc</code> e <code>md.N.tpr</code> para cada réplica e cria <code>index.ndx</code> automaticamente se ele não existir.</p>
+<p>Uso típico depois de já ter processado PBC e gerado <code>md_fit.N.xtc</code>:</p>
+<pre><code class="language-bash">bash gmx_analyze.sh
+</code></pre>
+<p>Os resultados são escritos em <code>analises/</code>, com nomes como <code>rmsd_ca-ca.1.xvg</code>, <code>rmsf_100-200ns.2.xvg</code>, <code>sasa.3.xvg</code>, além de trajetórias PDB recortadas em diferentes janelas de tempo.</p>
+<h2 id="gmx_pbcsh">gmx_pbc.sh<a class="headerlink" href="#gmx_pbcsh" title="Permanent link">&para;</a></h2>
+<p>Script para corrigir problemas de contorno periódico e gerar trajetórias adequadas para visualização e análise. Ele recebe dois argumentos: o prefixo dos arquivos (<code>md</code>, por exemplo) e o índice da réplica.</p>
+<p>Exemplo:</p>
+<pre><code class="language-bash">bash gmx_pbc.sh md 1
+</code></pre>
+<p>O script aplica, em sequência, <code>gmx trjconv</code> para tornar as moléculas inteiras, extrair o primeiro frame, remover saltos de PBC, recentralizar o sistema em torno de um grupo de referência (Protein), reconstruir uma caixa compacta, ajustar a trajetória ao grupo de ajuste (C-alpha) e gerar versões sem água e um TPR correspondente. Também produz uma trajetória PDB recortada no intervalo de interesse, com passos definidos por <code>b</code>, <code>e</code> e <code>dt</code> em ps.</p>
+<h2 id="gromacs_buildsh">gromacs_build.sh<a class="headerlink" href="#gromacs_buildsh" title="Permanent link">&para;</a></h2>
+<p>Script para construir e solvar o sistema de proteína, ajustar o número de moléculas de água, neutralizar cargas e adicionar íons até a força iônica desejada, além de montar as etapas de minimização e equilibração.</p>
+<p>O script espera encontrar um arquivo de proteína preparado (<code>prot_ok.pdb</code>) e um campo de força previamente configurado. Ele:</p>
+<ol>
+<li>Define a caixa dodecaédrica e centraliza a proteína com <code>gmx editconf</code>.</li>
+<li>Solva o sistema em duas etapas, gerando <code>shell.gro</code> e <code>water.gro</code> com o modelo de água especificado.</li>
+<li>Remove águas extras de forma controlada, recalcula o número total de átomos e atualiza o arquivo <code>top.top</code>.</li>
+<li>Faz a neutralização das cargas com <code>gmx genion</code> a partir de um <code>ion_neutral.tpr</code>.</li>
+<li>Calcula o número de íons para atingir a força iônica desejada e gera um sistema com íons (<code>ion_is.gro</code>).</li>
+<li>Executa minimizações em duas etapas (<code>min_none</code> e <code>min</code>) usando os arquivos <code>.mdp</code> em <code>../mdps</code>.</li>
+<li>Gera <code>min.pdb</code> como estrutura minimizada.</li>
+<li>Prepara três arquivos de equilibração (<code>eq.1</code>, <code>eq.2</code>, <code>eq.3</code>) com <code>gmx grompp</code>, prontos para rodar com <code>mdrun</code>.</li>
+</ol>
+<p>A chamada típica é feita após preparar <code>prot_ok.pdb</code> e o diretório de topologias:</p>
+<pre><code class="language-bash">bash gromacs_build.sh
+</code></pre>
+<h2 id="parametrize_ligsh">parametrize_lig.sh<a class="headerlink" href="#parametrize_ligsh" title="Permanent link">&para;</a></h2>
+<p>Script para parametrizar ligantes em AMBER e converter para GROMACS usando AmberTools e parmed. Ele recebe dois argumentos: o nome base do arquivo PDB do ligante (sem extensão) e a carga total do ligante.</p>
+<p>Pré-requisitos sugeridos:</p>
+<pre><code class="language-bash">conda create -n ambertools python==3.8
+conda activate ambertools
+pip install numpy==1.18.0 parmed
+conda install conda-forge::ambertools
+</code></pre>
+<p>Uso típico:</p>
+<pre><code class="language-bash">bash parametrize_lig.sh LIGANTE 0
+</code></pre>
+<p>O script copia <code>LIGANTE.pdb</code> para <code>lig.pdb</code>, gera <code>lig.mol2</code> com <code>antechamber</code> usando GAFF2 e cargas BCC, cria um arquivo <code>lig.frcmod</code> com <code>parmchk2</code>, monta um script <code>tleap.in</code> para produzir <code>lig.prmtop</code> e <code>lig.inpcrd</code>, e em seguida usa um pequeno script Python com <code>parmed</code> para aplicar Hydrogen Mass Repartitioning e salvar <code>lig.top</code> e <code>lig.gro</code>. No final, renomeia todos os arquivos para usar o nome original do ligante e remove arquivos temporários.</p>
+<p>Esse script é o ponto de partida para integrar novos ligantes ao pipeline de DM com o mesmo padrão de parametrização usado ao longo do projeto.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/gabriela-frajtag/TCC-Metano" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
