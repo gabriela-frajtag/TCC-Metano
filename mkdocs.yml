@@ -1,0 +1,29 @@
+site_name: TCC-Metano – Documentação
+site_url: https://gabriela-frajtag.github.io/TCC-Metano/
+repo_url: https://github.com/gabriela-frajtag/TCC-Metano
+theme:
+  name: readthedocs
+  language: pt-BR
+  palette:
+    scheme: default
+    primary: teal
+    accent: amber
+nav:
+  - Visão geral: docs/readme_geral.md
+  - Scripts: docs/scripts.md
+  - Análises:
+      - Índice: docs/analises.md
+      - Boltzina: docs/boltzina.md
+      - Dinâmica Molecular: docs/dinamica_md.md
+      - PropKa: docs/propka.md
+      - Triagem virtual: docs/triagem.md
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/gabriela-frajtag/TCC-Metano
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+
