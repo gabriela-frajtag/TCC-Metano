@@ -52,15 +52,33 @@
                   <li class="toctree-l1"><a class="reference internal" href="../analises/">Geral</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Boltz</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#descricao-do-arquivo-analise_boltzianaipynb">Descrição do arquivo analise_boltziana.ipynb</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#histogramas-de-docking-score">Histogramas de docking score</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#histogramas-de-affinity_probability_binary">Histogramas de affinity_probability_binary</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comparacao-entre-rankings-docking-vs-boltz">Comparação entre rankings (docking vs Boltz)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#relacao-entre-docking-score-e-probabilidades-de-afinidade">Relação entre docking score e probabilidades de afinidade</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#relacao-entre-valores-previstos-affinity_pred_value1-e-affinity_pred_value2-e-suas-probabilidades-correspondentes">Relação entre valores previstos (affinity_pred_value1 e affinity_pred_value2) e suas probabilidades correspondentes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comparacao-interna-das-previsoes-em-mcr-e-mer">Comparação interna das previsões em MCR e Mer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contagem-de-atomos-dos-ligantes-e-possiveis-vieses-simples">Contagem de átomos dos ligantes e possíveis vieses simples</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#painel-final-cruzando-numero-de-atomos-ranking-de-boltz-e-ranking-de-docking">Painel final cruzando número de átomos, ranking de Boltz e ranking de docking</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dinamica/">Dinâmica Molecular</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../propka/">PropKa</a>
                   </li>
-              </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Boltz</a>
-                </li>
               </ul>
       </div>
     </div>
@@ -87,12 +105,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="analise-boltzina">Análise Boltzina<a class="headerlink" href="#analise-boltzina" title="Permanent link">&para;</a></h1>
+<h2 id="descricao-do-arquivo-analise_boltzianaipynb">Descrição do arquivo <code>analise_boltziana.ipynb</code><a class="headerlink" href="#descricao-do-arquivo-analise_boltzianaipynb" title="Permanent link">&para;</a></h2>
+<p>O notebook contém visualizações destinadas a inspecionar graficamente os resultados de docking e das métricas fornecidas pelos modelos Boltzina para os conjuntos MCR e Mer. Ele apresenta distribuições, comparações de rankings e relações diretas entre variáveis usadas na triagem.</p>
+<h3 id="histogramas-de-docking-score">Histogramas de docking score<a class="headerlink" href="#histogramas-de-docking-score" title="Permanent link">&para;</a></h3>
+<p>Mostram a distribuição dos valores de docking score (após filtragem para valores negativos).<br />
+Os gráficos exibem como esses scores se espalham em cada conjunto.</p>
+<h3 id="histogramas-de-affinity_probability_binary">Histogramas de <code>affinity_probability_binary</code><a class="headerlink" href="#histogramas-de-affinity_probability_binary" title="Permanent link">&para;</a></h3>
+<p>Apresentam a distribuição das probabilidades binárias de afinidade fornecidas pelo modelo Boltzina para MCR e Mer.<br />
+Servem para visualizar a forma geral da distribuição dessa métrica nos dois conjuntos.</p>
+<h3 id="comparacao-entre-rankings-docking-vs-boltz">Comparação entre rankings (docking vs Boltz)<a class="headerlink" href="#comparacao-entre-rankings-docking-vs-boltz" title="Permanent link">&para;</a></h3>
+<p>Scatter plots relacionam o ranking de docking ao ranking do Boltz para cada conjunto.<br />
+O propósito é visualizar como os rankings se organizam quando colocados lado a lado.</p>
+<h3 id="relacao-entre-docking-score-e-probabilidades-de-afinidade">Relação entre docking score e probabilidades de afinidade<a class="headerlink" href="#relacao-entre-docking-score-e-probabilidades-de-afinidade" title="Permanent link">&para;</a></h3>
+<p>Gráficos de dispersão relacionam o docking score com diferentes variantes de probabilidade (<code>affinity_probability_binary</code>, <code>binary1</code>, <code>binary2</code>).<br />
+Permitem observar como essas variáveis variam umas em função das outras.</p>
+<h3 id="relacao-entre-valores-previstos-affinity_pred_value1-e-affinity_pred_value2-e-suas-probabilidades-correspondentes">Relação entre valores previstos (<code>affinity_pred_value1</code> e <code>affinity_pred_value2</code>) e suas probabilidades correspondentes<a class="headerlink" href="#relacao-entre-valores-previstos-affinity_pred_value1-e-affinity_pred_value2-e-suas-probabilidades-correspondentes" title="Permanent link">&para;</a></h3>
+<p>Scatter plots adicionais mostram a relação direta entre cada valor previsto pelo modelo e sua respectiva probabilidade binária.</p>
+<h3 id="comparacao-interna-das-previsoes-em-mcr-e-mer">Comparação interna das previsões em MCR e Mer<a class="headerlink" href="#comparacao-interna-das-previsoes-em-mcr-e-mer" title="Permanent link">&para;</a></h3>
+<p>O notebook ordena cada conjunto por <code>affinity_probability_binary</code> e exibe, no mesmo gráfico, as curvas associadas a <code>binary1</code>, <code>binary2</code> e à média utilizada como métrica principal.<br />
+Serve para observar visualmente o contraste entre as previsões internas do modelo dentro de cada conjunto.</p>
+<h3 id="contagem-de-atomos-dos-ligantes-e-possiveis-vieses-simples">Contagem de átomos dos ligantes e possíveis vieses simples<a class="headerlink" href="#contagem-de-atomos-dos-ligantes-e-possiveis-vieses-simples" title="Permanent link">&para;</a></h3>
+<p>O notebook contabiliza o número de átomos de cada ligante a partir dos arquivos PDBQT e gera gráficos relacionando o número de átomos ao ranking de docking e ao ranking do Boltz.<br />
+Esses gráficos permitem visualizar como o tamanho do ligante aparece distribuído ao longo dos rankings.</p>
+<h3 id="painel-final-cruzando-numero-de-atomos-ranking-de-boltz-e-ranking-de-docking">Painel final cruzando número de átomos, ranking de Boltz e ranking de docking<a class="headerlink" href="#painel-final-cruzando-numero-de-atomos-ranking-de-boltz-e-ranking-de-docking" title="Permanent link">&para;</a></h3>
+<p>Um conjunto de quatro scatter plots resume a relação entre:
+- número de átomos e ranking do Boltz para MCR e Mer<br />
+- número de átomos e ranking de docking para MCR e Mer<br />
+Esse painel fornece uma visualização consolidada das variáveis principais utilizadas na triagem.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../propka/" class="btn btn-neutral float-left" title="PropKa"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../analises/" class="btn btn-neutral float-left" title="Geral"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dinamica/" class="btn btn-neutral float-right" title="Dinâmica Molecular">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -119,8 +165,10 @@
         </span>
     
     
-      <span><a href="../propka/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../analises/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../dinamica/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

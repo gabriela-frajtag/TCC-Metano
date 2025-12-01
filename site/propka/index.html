@@ -56,11 +56,9 @@
                   <li class="toctree-l1"><a class="reference internal" href="../dinamica/">Dinâmica Molecular</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">PropKa</a>
+    <ul class="current">
+    </ul>
                   </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../boltzina/">Boltz</a>
-                </li>
               </ul>
       </div>
     </div>
@@ -87,13 +85,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="analise-de-pka-analise-de-pkaipynb">Análise de pKa (<code>Análise de pKa.ipynb</code>)<a class="headerlink" href="#analise-de-pka-analise-de-pkaipynb" title="Permanent link">&para;</a></h1>
+<p>Este notebook organiza e visualiza os resultados de pKa obtidos com o PropKa para Mer e MCR. Os arquivos de saída em texto são convertidos para arquivos <code>.csv</code> com três colunas principais (<code>Resíduo</code>, <code>pKa</code>, <code>pKa modelo</code>). Em seguida, os resíduos são separados por cadeia (A, B, C, D para Mer; A–F para MCR), preservando a informação de resíduo e cadeia em dataframes independentes.</p>
+<p>São removidos dos conjuntos os resíduos terminais (rótulos como <code>N+1</code> e <code>C-327</code>) e, por decisão metodológica, todas as Cisteínas (<code>CYS</code>) e Tirosinas (<code>TYR</code>). Isso gera uma tabela limpa de resíduos ionizáveis relevantes, usada para construção dos gráficos.</p>
+<p>A função <code>process_pka</code> faz o pré-processamento dos arquivos <code>.csv</code>, separando por cadeia e extraindo o identificador do resíduo. Já a função <code>plot_pka</code> gera gráficos de barras de pKa por resíduo, com cores diferentes para cada tipo de resíduo (ASP, GLU, HIS, LYS, ARG, etc.) e uma linha horizontal de referência no eixo y (pH ≈ 7). Para Mer, são gerados gráficos completos de pKa para cada cadeia, mostrando todos os resíduos após os filtros.</p>
+<p>Para MCR, o notebook também recria o <code>.csv</code> a partir do resumo em texto (<code>RESUMO_mcr_6mer_pka.txt</code>), repete o mesmo tratamento de cadeias e filtros, e gera gráficos destacados para resíduos com pKa considerado “anômalo” segundo critérios definidos no código (por exemplo, ácidos fora de uma faixa de referência e básicos com pKa mais baixo do que o esperado). Esses gráficos marcam explicitamente apenas os resíduos classificados como anômalos no eixo x, o que facilita localizar visualmente essas posições nas diferentes cadeias.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../dinamica/" class="btn btn-neutral float-left" title="Dinâmica Molecular"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../boltzina/" class="btn btn-neutral float-right" title="Boltz">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -122,8 +123,6 @@
     
       <span><a href="../dinamica/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../boltzina/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -54,13 +54,11 @@
                   <li class="toctree-l1"><a class="reference internal" href="../boltzina/">Boltz</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Dinâmica Molecular</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../propka/">PropKa</a>
                   </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../boltzina/">Boltz</a>
-                </li>
               </ul>
       </div>
     </div>
@@ -87,7 +85,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="analise-de-dinamica-molecular-analise-dmipynb">Análise de Dinâmica Molecular (<code>Análise DM.ipynb</code>)<a class="headerlink" href="#analise-de-dinamica-molecular-analise-dmipynb" title="Permanent link">&para;</a></h1>
+<p>Este notebook converte arquivos <code>.xvg</code> gerados pelo Gromacs em dataframes e produz gráficos consolidados de RMSD, RMSF, SASA, raio de giro e ligações de hidrogênio para diferentes sistemas simulados: MCR 6mer apo e holo, Mer 4mer apo e Mer 4mer em complexo com F420. A função <code>converte_xvg</code> é usada ao longo do notebook para padronizar a leitura dos arquivos.</p>
+<p>Na primeira parte, são analisados os arquivos de RMSD C-alfa da MCR 6mer na forma apo (<code>analises_mcr_6mer_apo/rmsd_ca-ca.*.xvg</code>). As três réplicas são reamostradas a cada 1000 ps, renomeadas como <code>RMSD_1</code>, <code>RMSD_2</code> e <code>RMSD_3</code> e combinadas em um único dataframe. A partir desse conjunto são calculadas a média e o desvio padrão em cada ponto de tempo (convertido para ns), resultando em um gráfico de RMSD médio com faixa sombreada correspondente a ±1 desvio padrão e figura salva como <code>RMSD MCR_APO.jpg</code>.</p>
+<p>Em seguida, são carregados os arquivos de RMSF por cadeia (A, B e C) da MCR 6mer apo, restritos ao intervalo de 100 a 200 ns (<code>rmsf_100-200ns_ch?.*.xvg</code>). Para cada cadeia, as três réplicas são fundidas, calculando-se média e desvio padrão por resíduo. Os números de resíduos são deslocados por constantes distintas (−1000, −2000, −3000) para alinhar a numeração por cadeia, e são gerados gráficos de RMSF médio com faixa de desvio padrão para as cadeias A, B e C, com arquivos <code>RMSF chA/B/C MCR_APO.jpg</code>. Um gráfico adicional mostra, sobrepostas, as três réplicas brutas de RMSF da cadeia A.</p>
+<p>O notebook também trata os arquivos de SASA total (<code>sasa.*.xvg</code>) e SASA com volume/densidade (<code>sasa_vol.*.xvg</code>) da MCR 6mer apo, produzindo curvas de área acessível ao solvente em função do tempo e curvas de densidade ao longo da simulação. Os arquivos de SASA por resíduo (<code>sasa_res.*.xvg</code>) são convertidos em dataframes para inspeção, e os arquivos de raio de giro (<code>rg.*.xvg</code>) e ligações de hidrogênio (<code>hb.*.xvg</code>) são usados para gerar gráficos comparando as três réplicas de Rg e de número de ligações de hidrogênio ao longo do tempo.</p>
+<p>A mesma lógica é repetida para a Mer 4mer na forma apo, com cálculo da média e desvio padrão de RMSD e RMSF das três réplicas, geração de gráficos de RMSD médio (<code>RMSD Mer_APO.jpg</code>) e RMSF médio (<code>RMSF Mer_APO.jpg</code>), além de curvas de SASA, SASA com volume/densidade, raio de giro e ligações de hidrogênio para as três réplicas deste sistema.</p>
+<p>Na sequência, são processados os dados da Mer 4mer em complexo com F420 (<code>analises_mer_4mer_f420</code>). São geradas séries temporais de RMSD C-alfa médio com faixa de desvio padrão (<code>RMSD Mer_f420.jpg</code>), RMSF médio por resíduo (<code>RMSF Mer_f420.jpg</code>), SASA total, SASA com volume/densidade, SASA por resíduo, raio de giro e ligações de hidrogênio, sempre a partir da combinação das três réplicas.</p>
+<p>Por fim, o notebook repete a análise de RMSD e RMSF por cadeia para a MCR 6mer na forma holo (<code>analises_mcr_6mer_holo</code>). Os arquivos de RMSD são reamostrados, combinados e usados para gerar um gráfico de RMSD médio com faixa de ±1 desvio padrão (<code>RMSD MCR_HOLO.jpg</code>). Para RMSF, são lidos os arquivos por cadeia (A, B e C), combinadas as três réplicas por cadeia e calculadas média e desvio padrão por resíduo, com deslocamento da numeração de resíduos análogo ao caso apo e geração das figuras <code>RMSF chA/B/C MCR_HOLO.jpg</code>.</p>
               
             </div>
           </div><footer>
