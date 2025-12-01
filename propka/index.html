@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://gabriela-frajtag.github.io/TCC-Metano/propka/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Propka - TCC-Metano – Documentação</title>
+    <title>PropKa - TCC-Metano – Documentação</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Propka";
+        var mkdocs_page_name = "PropKa";
         var mkdocs_page_input_path = "propka.md";
         var mkdocs_page_url = "/TCC-Metano/propka/";
       </script>
@@ -40,24 +40,24 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="" href="../docs/readme_geral.md">Visão geral</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Visão geral</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="" href="../docs/scripts.md">Scripts</a>
+                <li class="toctree-l1"><a class="reference internal" href="../scripts/">Scripts</a>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Análises</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="" href="../docs/analises.md">Índice</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../analises/">Geral</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../docs/boltzina.md">Boltzina</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../boltzina/">Boltz</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../docs/dinamica_md.md">Dinâmica Molecular</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../dinamica/">Dinâmica Molecular</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../docs/propka.md">PropKa</a>
-                  </li>
-                  <li class="toctree-l1"><a class="" href="../docs/triagem.md">Triagem virtual</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PropKa</a>
+    <ul class="current">
+    </ul>
                   </li>
               </ul>
       </div>
@@ -74,7 +74,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Propka</li>
+          <li class="breadcrumb-item">Análises</li>
+      <li class="breadcrumb-item active">PropKa</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/gabriela-frajtag/TCC-Metano/edit/master/docs/propka.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -84,10 +85,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="analise-de-pka-analise-de-pkaipynb">Análise de pKa (<code>Análise de pKa.ipynb</code>)<a class="headerlink" href="#analise-de-pka-analise-de-pkaipynb" title="Permanent link">&para;</a></h1>
+<p>Este notebook organiza e visualiza os resultados de pKa obtidos com o PropKa para Mer e MCR. Os arquivos de saída em texto são convertidos para arquivos <code>.csv</code> com três colunas principais (<code>Resíduo</code>, <code>pKa</code>, <code>pKa modelo</code>). Em seguida, os resíduos são separados por cadeia (A, B, C, D para Mer; A–F para MCR), preservando a informação de resíduo e cadeia em dataframes independentes.</p>
+<p>São removidos dos conjuntos os resíduos terminais (rótulos como <code>N+1</code> e <code>C-327</code>) e, por decisão metodológica, todas as Cisteínas (<code>CYS</code>) e Tirosinas (<code>TYR</code>). Isso gera uma tabela limpa de resíduos ionizáveis relevantes, usada para construção dos gráficos.</p>
+<p>A função <code>process_pka</code> faz o pré-processamento dos arquivos <code>.csv</code>, separando por cadeia e extraindo o identificador do resíduo. Já a função <code>plot_pka</code> gera gráficos de barras de pKa por resíduo, com cores diferentes para cada tipo de resíduo (ASP, GLU, HIS, LYS, ARG, etc.) e uma linha horizontal de referência no eixo y (pH ≈ 7). Para Mer, são gerados gráficos completos de pKa para cada cadeia, mostrando todos os resíduos após os filtros.</p>
+<p>Para MCR, o notebook também recria o <code>.csv</code> a partir do resumo em texto (<code>RESUMO_mcr_6mer_pka.txt</code>), repete o mesmo tratamento de cadeias e filtros, e gera gráficos destacados para resíduos com pKa considerado “anômalo” segundo critérios definidos no código (por exemplo, ácidos fora de uma faixa de referência e básicos com pKa mais baixo do que o esperado). Esses gráficos marcam explicitamente apenas os resíduos classificados como anômalos no eixo x, o que facilita localizar visualmente essas posições nas diferentes cadeias.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dinamica/" class="btn btn-neutral float-left" title="Dinâmica Molecular"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
   <hr/>
 
@@ -112,6 +120,8 @@
           <a href="https://github.com/gabriela-frajtag/TCC-Metano" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
         </span>
     
+    
+      <span><a href="../dinamica/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>
