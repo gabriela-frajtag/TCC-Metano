@@ -6,7 +6,7 @@ A documentação detalhada de cada conjunto de análises está organizada nos RE
 
 ### Boltzina
 
-[Boltzina](boltz.md)
+[Boltzina](boltzina.md)
 
 Subpasta com o notebook `analise_boltzina.ipynb` e as planilhas `boltzina_mcr.xlsx` e `boltzina_mer.xlsx`. O notebook lê as saídas do modelo Boltzina e dos dockings para MCR e Mer, monta dataframes consolidados e gera:
 

@@ -12,11 +12,11 @@ nav:
   - Visão geral: index.md
   - Scripts: scripts.md
   - Análises:
-      - Índice: analises.md
-      - Boltzina: boltzina.md
-      - Dinâmica Molecular: dinamica_md.md
-      - PropKa: propka.md
-      - Triagem virtual: triagem.md
+    - Geral: analises.md
+    - Boltz: boltzina.md
+    - Dinâmica Molecular: dinamica.md
+    - PropKa: propka.md
+
 extra:
   social:
     - icon: fontawesome/brands/github
